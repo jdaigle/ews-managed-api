@@ -1,3 +1,12 @@
+# Yet Another Fork of "ews-managed-api"
+
+This is yet another fork of https://github.com/OfficeDev/ews-managed-api, based on the fork https://github.com/sherlock1982/ews-managed-api.
+
+Changes:
+
+* Dropping support for .NET Framework
+* Upgrading Nuget dependencies.
+
 # Quick introduction
 
 This is a NET Standard 1.4 port of EWS API. Here are some tips to take into account.
