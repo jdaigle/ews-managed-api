@@ -1,10 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <VersionPrefix>1.1.3</VersionPrefix>
-    <TargetFrameworks>netstandard2.0;net46</TargetFrameworks>
+    <VersionPrefix>1.1.4</VersionPrefix>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>Microsoft.Exchange.WebServices.NETStandard</AssemblyName>
-    <PackageId>Microsoft.Exchange.WebServices.NETStandard</PackageId>
+    <PackageId>JosephDaigle.Microsoft.Exchange.WebServices.NETStandard</PackageId>
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
     <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
@@ -13,32 +13,39 @@
     <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
     <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Authors>sherlock1982</Authors>
-    <RepositoryUrl>https://github.com/sherlock1982/ews-managed-api</RepositoryUrl>
+    <Authors>Joseph Daigle,sherlock1982</Authors>
+    <RepositoryUrl>https://github.com/jdaigle/ews-managed-api</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>ews exchange office365 Microsoft Web API Email Client Library C#</PackageTags>
-    <PackageProjectUrl>https://github.com/sherlock1982/ews-managed-api</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/jdaigle/ews-managed-api</PackageProjectUrl>
     <Title>Microsoft.Exchange.WebServices.NETStandard</Title>
     <Description>The Exchange Web Services (EWS) Managed API provides a managed interface for developing .NET client applications that use EWS. By using the EWS Managed API, you can access almost all the information stored in an Office 365, Exchange Online, or Exchange Server mailbox.</Description>
+    <EnablePackageValidation>true</EnablePackageValidation>
+    <PackageLicenseFile>license.txt</PackageLicenseFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
     <Compile Remove="Autodiscover\DirectoryHelper.cs" />
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net46' ">
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Security" />
-    <Reference Include="System.DirectoryServices" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System" />
-    <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+  <ItemGroup>
     <PackageReference Include="System.Security.Cryptography.Xml">
       <Version>4.4.0</Version>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="README.md" />
+    <Content Include="README.md">
+      <Pack>True</Pack>
+      <PackagePath>.</PackagePath>
+    </Content>
+    <None Remove="license.txt" />
+    <Content Include="license.txt">
+      <Pack>True</Pack>
+      <PackagePath>.</PackagePath>
+    </Content>
   </ItemGroup>
 
 </Project>

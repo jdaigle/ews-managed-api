@@ -107,14 +107,14 @@ namespace Microsoft.Exchange.WebServices.Data
 
             if (adjustmentRules.Length == 0)
             {
-                this.periods.Add(standardPeriod.Id, standardPeriod);
+                this.periods[standardPeriod.Id] = standardPeriod;
 
                 // If the time zone info doesn't support Daylight Saving Time, we just need to
                 // create one transition to one group with one transition to the standard period.
                 TimeZoneTransitionGroup transitionGroup = new TimeZoneTransitionGroup(this, "0");
                 transitionGroup.Transitions.Add(transitionToStandardPeriod);
 
-                this.transitionGroups.Add(transitionGroup.Id, transitionGroup);
+                this.transitionGroups[transitionGroup.Id] = transitionGroup;
 
                 TimeZoneTransition initialTransition = new TimeZoneTransition(this, transitionGroup);
 
@@ -127,7 +127,7 @@ namespace Microsoft.Exchange.WebServices.Data
                     TimeZoneTransitionGroup transitionGroup = new TimeZoneTransitionGroup(this, this.transitionGroups.Count.ToString());
                     transitionGroup.InitializeFromAdjustmentRule(adjustmentRules[i], standardPeriod);
 
-                    this.transitionGroups.Add(transitionGroup.Id, transitionGroup);
+                    this.transitionGroups[transitionGroup.Id] = transitionGroup;
 
                     TimeZoneTransition transition;
 
@@ -148,7 +148,7 @@ namespace Microsoft.Exchange.WebServices.Data
                             absoluteDateTransition.DateTime = adjustmentRules[i].DateStart;
 
                             transition = absoluteDateTransition;
-                            this.periods.Add(standardPeriod.Id, standardPeriod);
+                            this.periods[standardPeriod.Id] = standardPeriod;
                         }
                         else
                         {
@@ -196,7 +196,7 @@ namespace Microsoft.Exchange.WebServices.Data
             TimeZoneTransitionGroup transitionGroup = new TimeZoneTransitionGroup(this, this.transitionGroups.Count.ToString());
             transitionGroup.Transitions.Add(transitionToPeriod);
 
-            this.transitionGroups.Add(transitionGroup.Id, transitionGroup);
+            this.transitionGroups[transitionGroup.Id] = transitionGroup;
 
             return transitionGroup;
         }
@@ -286,7 +286,7 @@ namespace Microsoft.Exchange.WebServices.Data
 
                             transitionGroup.LoadFromXml(reader);
 
-                            this.transitionGroups.Add(transitionGroup.Id, transitionGroup);
+                            this.transitionGroups[transitionGroup.Id] = transitionGroup;
                         }
                     }
                     while (!reader.IsEndElement(XmlNamespace.Types, XmlElementNames.TransitionsGroups));
